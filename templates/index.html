@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Word for Ivy — Daily Word</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    :root{
+      --bg:#fff6fb;
+      --card:#fff;
+      --accent:#ff6fa3;
+      --muted:#6b7280;
+      --shadow: 0 6px 18px rgba(123,63,111,0.08);
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    html,body{height:100%}
+    body{
+      background: linear-gradient(180deg, var(--bg), #fff);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:32px;
+      margin:0;
+    }
+    .card{
+      width:min(760px,96vw);
+      background:var(--card);
+      border-radius:16px;
+      box-shadow:var(--shadow);
+      padding:28px;
+      border:1px solid rgba(0,0,0,0.03);
+    }
+    .header{
+      display:flex;
+      align-items:center;
+      gap:16px;
+    }
+    .flower{
+      width:64px;
+      height:64px;
+      background:linear-gradient(135deg,#ffd6e8,#ffecf6);
+      border-radius:14px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:32px;
+    }
+    h1{margin:0;font-size:28px}
+    .meta{color:var(--muted); margin-top:6px}
+    .word {
+      display:flex;
+      align-items:baseline;
+      gap:12px;
+      margin-top:18px;
+      margin-bottom:6px;
+    }
+    .word .big{
+      font-size:44px;
+      font-weight:700;
+      letter-spacing:-0.02em;
+      color:#2b0b20;
+    }
+    .pron{
+      color:var(--accent);
+      font-weight:600;
+      background:linear-gradient(90deg, rgba(255,111,148,0.12), rgba(255,111,148,0.03));
+      padding:6px 10px;
+      border-radius:999px;
+    }
+    .definitions{margin-top:14px}
+    .definition{padding:12px;border-radius:10px;margin-bottom:8px;background:linear-gradient(180deg,#fff,#fff);border:1px solid rgba(0,0,0,0.02)}
+    .part{font-size:13px;color:var(--muted);margin-bottom:6px}
+    .example{margin-top:8px;font-style:italic;color:#334155}
+    .footer{margin-top:18px;color:var(--muted);font-size:13px}
+    .note{margin-top:10px;padding:10px;background:#fff6fb;border-radius:8px;border:1px solid rgba(255,111,148,0.06)}
+    .small{font-size:13px;color:var(--muted)}
+  </style>
+</head>
+<body>
+  <main class="card">
+    <div class="header">
+      <div class="flower">🌸</div>
+      <div>
+        <h1>Word for Ivy</h1>
+        <div class="meta">A new cute word every day — {{ date }}</div>
+      </div>
+    </div>
+
+    <div class="word">
+      <div class="big">{{ word }}</div>
+      {% if pronunciation_display %}
+      <div class="pron">/{{ pronunciation_display }}/</div>
+      {% endif %}
+    </div>
+
+    {% if definitions %}
+    <section class="definitions">
+      {% for d in definitions %}
+      <div class="definition">
+        {% if d.partOfSpeech %}
+        <div class="part">{{ d.partOfSpeech }}</div>
+        {% endif %}
+        <div class="text">{{ d.text }}</div>
+      </div>
+      {% endfor %}
+    </section>
+    {% endif %}
+
+    {% if example %}
+    <div class="example">“{{ example }}”</div>
+    {% endif %}
+
+    {% if note %}
+    <div class="note">{{ note }}</div>
+    {% endif %}
+
+    <div class="footer">
+      <div class="small">Source: {{ source }}</div>
+    </div>
+  </main>
+</body>
+</html>
