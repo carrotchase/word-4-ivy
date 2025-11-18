@@ -6,12 +6,22 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <style>
     :root{
-      --bg:#d3ffcd;
-      --card:#fff;
-      --accent:#d3ffcd;
+      --bg:#f59fb5;
+      --card:#ffeef1;
+      --accent:#ff93ac;
       --muted:#6b7280;
       --shadow: 0 6px 18px rgba(123,63,111,0.08);
       font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      --flower-gradient: linear-gradient(135deg,#579468,#94bb9c);
+    }
+    [data-teme='pink'] {
+      --bg:#9c1858;
+      --card:#fff;
+      --accent:#911556;
+      --muted:#6b7280;
+      --shadow: 0 6px 18px rgba(123,63,111,0.08);
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      --flower-gradient: linear-gradient(135deg,#579468,#94bb9c);
     }
     html,body{height:100%}
     body{
@@ -38,7 +48,7 @@
     .flower{
       width:64px;
       height:64px;
-      background:linear-gradient(135deg,#579468,#94bb9c);
+      background:--flower-gradient;
       border-radius:14px;
       display:flex;
       align-items:center;
@@ -72,14 +82,60 @@
     .part{font-size:13px;color:var(--muted);margin-bottom:6px}
     .example{margin-top:8px;font-style:italic;color:#334155}
     .footer{margin-top:18px;color:var(--muted);font-size:13px}
-    .note{margin-top:10px;padding:10px;background:#c0ffbe;border-radius:8px;border:1px solid rgba(255,111,148,0.06)}
+    .note{margin-top:10px;padding:10px;background: var(--bg);border-radius:8px;border:1px solid rgba(255,111,148,0.06)}
     .small{font-size:13px;color:var(--muted)}
+    /*slider switch css */
+    .theme-switch-wrapper {
+      display: flex;
+      align-items: center;
+      
+      em {
+        margin-left: 10px;
+        font-size: 1rem;
+      }
+    }
+    .theme-switch {
+      display: inline-block;
+      height: 34px;
+      position: relative;
+      width: 60px;
+    }
+
+    .theme-switch input {
+      display:none;
+    }
+
+    .slider {
+      background-color: #ccc;
+      bottom: 0;
+      cursor: pointer;
+      left: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+      transition: .4s;
+    }
+
+    .slider:before {
+      background-color: #fff;
+      bottom: 4px;
+      content: "";
+      height: 26px;
+      left: 4px;
+      position: absolute;
+      transition: .4s;
+      width: 26px;
+    }
+
+    input:checked + .slider {
+      background-color: #66bb6a;
+    }
   </style>
 </head>
 <body>
   <main class="card">
     <div class="header">
-      <div class="flower">🐸</div>
+      <div class="flower">🌷</div>
       <div>
         <h1>Hey Look! It's a Word for Ivy!</h1>
         <div class="meta">{{ date }}</div>
@@ -118,5 +174,11 @@
       <div class="small">Source: {{ source }}</div>
     </div>
   </main>
+  <!-- <div class="theme-switch-wrapper">
+    <label class="theme-switch" for="checkbox">
+    <input type="checkbox" id="checkbox" />
+    <div class="slider round"></div>
+  </label>
+  </div> -->
 </body>
 </html>
