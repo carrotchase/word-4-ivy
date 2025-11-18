@@ -10,6 +10,7 @@ app = Flask(__name__)
 API_KEY = os.environ.get("WORDNIK_API_KEY")
 CACHE_PATH = "cache.json"
 WORDNIK_BASE = "https://api.wordnik.com/v4"
+app.template_folder = 'templates'
 
 def load_cache():
     try:
@@ -68,7 +69,7 @@ def fetch_example(word):
 
 @app.route("/")
 def index():
-    today = datetime.utcnow().date().isoformat()
+    today = datetime.now().date().isoformat()
     cache = load_cache()
 
     # Use cache if we already fetched today's word
